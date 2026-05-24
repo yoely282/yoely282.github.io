@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoel | Cybersecurity Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#080d14;--bg2:#0d1520;--bg3:#111d2e;
+  --card:#0f1a28;--card2:#131f30;
+  --cyan:#00e5ff;--cyan2:#00b8d4;
+  --green:#39d353;--red:#ff5c5c;--amber:#ffb347;--purple:#b27cff;
+  --text:#dde4f0;--muted:#5a6a82;--soft:#8a9ab5;
+  --border:rgba(0,229,255,0.12);--border2:rgba(0,229,255,0.28);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospace;overflow-x:hidden}
+::selection{background:rgba(0,229,255,0.25)}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--cyan2);border-radius:3px}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(0,229,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,0.025) 1px,transparent 1px);
+  background-size:44px 44px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 2rem;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(8,13,20,0.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;color:var(--cyan);letter-spacing:0.06em;text-decoration:none}
+.nav-logo span{color:var(--text)}
+.nav-links{display:flex;gap:1.75rem;list-style:none}
+.nav-links a{color:var(--soft);font-size:0.72rem;text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover,.nav-links a.active{color:var(--cyan)}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.nav-badge{font-size:0.68rem;padding:4px 12px;border:1px solid var(--green);color:var(--green);border-radius:20px;letter-spacing:0.06em;animation:pg 2s infinite}
+@keyframes pg{0%,100%{box-shadow:0 0 0 0 rgba(57,211,83,0.3)}50%{box-shadow:0 0 0 5px rgba(57,211,83,0)}}
+
+/* HERO */
+#hero{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:7rem 2rem 4rem;text-align:center}
+.hero-inner{max-width:820px}
+.hero-tag{display:inline-block;margin-bottom:1.5rem;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--cyan);border:1px solid var(--border2);padding:5px 16px;border-radius:20px;background:rgba(0,229,255,0.06)}
+.hero-name{font-family:'Syne',sans-serif;font-size:clamp(3.5rem,10vw,7rem);font-weight:800;line-height:0.92;color:#fff;letter-spacing:-0.02em;margin-bottom:1rem}
+.hero-name .acc{color:transparent;-webkit-text-stroke:2px var(--cyan)}
+.hero-loc{font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem;letter-spacing:0.08em}
+.hero-loc i{color:var(--red);margin-right:5px}
+.typed-wrap{font-size:1.2rem;color:var(--cyan);min-height:2rem;margin-bottom:2.25rem;letter-spacing:0.02em}
+#typed-text::after{content:'|';animation:blink 0.8s step-end infinite;margin-left:2px}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.hero-desc{font-size:0.83rem;color:var(--soft);line-height:1.95;max-width:580px;margin:0 auto 2.5rem}
+.hero-btns{display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 24px;border-radius:6px;font-size:0.78rem;font-family:'JetBrains Mono',monospace;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:none;transition:all 0.2s;font-weight:500}
+.btn-primary{background:var(--cyan);color:#050a10}
+.btn-primary:hover{background:#fff;transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--cyan);border:1px solid var(--border2)}
+.btn-outline:hover{background:rgba(0,229,255,0.08);transform:translateY(-2px)}
+.btn-sm{padding:8px 16px;font-size:0.7rem}
+.hero-stats{display:flex;gap:2.5rem;justify-content:center;margin-top:3.5rem;padding-top:2rem;border-top:1px solid var(--border);flex-wrap:wrap}
+.stat-item{text-align:center}
+.stat-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--cyan);line-height:1}
+.stat-label{font-size:0.68rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px}
+
+/* SECTIONS */
+section{position:relative;z-index:1;padding:5.5rem 2rem}
+.container{max-width:1020px;margin:0 auto}
+.section-header{margin-bottom:3rem}
+.section-tag{font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--cyan);margin-bottom:0.6rem;display:block}
+.section-title{font-family:'Syne',sans-serif;font-size:2.4rem;font-weight:800;color:#fff;line-height:1.1}
+.section-line{width:40px;height:3px;background:var(--cyan);margin-top:0.9rem;border-radius:2px}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);margin:0 2rem;position:relative;z-index:1}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
+.about-text p{color:var(--soft);font-size:0.83rem;line-height:1.95;margin-bottom:1rem}
+.about-terminal{background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.terminal-bar{background:var(--bg3);padding:10px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
+.t-dot{width:11px;height:11px;border-radius:50%}
+.terminal-body{padding:1.25rem;font-size:0.77rem;line-height:2.1}
+.t-prompt{color:var(--green)}
+.t-cmd{color:var(--cyan)}
+.t-key{color:var(--amber)}
+.t-val{color:var(--text)}
+
+/* PROJECT CARDS */
+.projects-grid{display:grid;gap:1.5rem}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color 0.3s,transform 0.3s}
+.project-card:hover{border-color:var(--border2)}
+.project-header{padding:1.5rem 1.75rem;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
+.project-meta{flex:1}
+.project-number{font-size:0.64rem;color:var(--muted);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:0.5rem}
+.project-title{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;color:#fff;line-height:1.2;margin-bottom:0.6rem}
+.project-title span{color:var(--cyan);font-size:1rem}
+.project-date{font-size:0.68rem;color:var(--muted);margin-bottom:0.6rem;letter-spacing:0.05em}
+.project-date i{margin-right:5px;color:var(--cyan)}
+.project-desc{font-size:0.79rem;color:var(--soft);line-height:1.75}
+.project-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:1rem}
+.tag{font-size:0.65rem;padding:3px 10px;border-radius:20px;letter-spacing:0.06em;text-transform:uppercase;font-weight:500}
+.tag-cyan{background:rgba(0,229,255,0.1);color:var(--cyan);border:1px solid rgba(0,229,255,0.2)}
+.tag-green{background:rgba(57,211,83,0.1);color:var(--green);border:1px solid rgba(57,211,83,0.2)}
+.tag-red{background:rgba(255,92,92,0.1);color:var(--red);border:1px solid rgba(255,92,92,0.2)}
+.tag-amber{background:rgba(255,179,71,0.1);color:var(--amber);border:1px solid rgba(255,179,71,0.2)}
+.tag-purple{background:rgba(178,124,255,0.1);color:var(--purple);border:1px solid rgba(178,124,255,0.2)}
+.tag-muted{background:rgba(90,106,130,0.12);color:var(--soft);border:1px solid rgba(90,106,130,0.2)}
+.project-toggle{background:rgba(0,229,255,0.07);border:1px solid var(--border2);color:var(--cyan);width:36px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:all 0.2s;font-size:0.85rem}
+.project-toggle:hover{background:rgba(0,229,255,0.15)}
+.project-card.expanded .project-toggle i{transform:rotate(45deg)}
+.project-toggle i{transition:transform 0.3s}
+.project-body{display:none;padding:1.5rem 1.75rem;border-top:1px solid var(--border)}
+.project-card.expanded .project-body{display:block}
+
+/* PHASE */
+.phase-list{display:grid;gap:1rem}
+.phase{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1rem 1.25rem}
+.phase-top{display:flex;align-items:center;gap:10px;margin-bottom:0.6rem}
+.phase-dot{width:8px;height:8px;border-radius:50%;background:var(--cyan);flex-shrink:0;box-shadow:0 0 6px rgba(0,229,255,0.5)}
+.phase-dot-g{background:var(--green);box-shadow:0 0 6px rgba(57,211,83,0.5)}
+.phase-dot-r{background:var(--red);box-shadow:0 0 6px rgba(255,92,92,0.5)}
+.phase-dot-a{background:var(--amber);box-shadow:0 0 6px rgba(255,179,71,0.5)}
+.phase-dot-p{background:var(--purple);box-shadow:0 0 6px rgba(178,124,255,0.5)}
+.phase-title{font-size:0.82rem;font-weight:700;color:#fff;letter-spacing:0.03em}
+.phase-items{list-style:none;display:grid;gap:5px}
+.phase-items li{font-size:0.76rem;color:var(--soft);padding-left:1rem;position:relative;line-height:1.65}
+.phase-items li::before{content:'›';position:absolute;left:0;color:var(--muted)}
+.code-block{background:#060c14;border:1px solid var(--border);border-radius:6px;padding:12px 14px;font-size:0.73rem;color:var(--green);margin:0.75rem 0;overflow-x:auto;font-family:'JetBrains Mono',monospace;line-height:1.8}
+.code-comment{color:var(--muted)}
+.skills-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--border)}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.25rem}
+.skill-cat{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.25rem;transition:border-color 0.3s}
+.skill-cat:hover{border-color:var(--border2)}
+.skill-cat-title{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.skill-cat-title i{font-size:0.85rem}
+.skill-badges{display:flex;flex-wrap:wrap;gap:6px}
+.skill-badge{font-size:0.71rem;padding:4px 10px;border-radius:4px;background:var(--bg2);border:1px solid var(--border);color:var(--soft);letter-spacing:0.03em;transition:all 0.2s}
+.skill-badge:hover{border-color:var(--border2);color:var(--cyan)}
+
+/* CERTS */
+.certs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.25rem}
+.cert-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.4rem;display:flex;align-items:flex-start;gap:1rem;transition:border-color 0.3s}
+.cert-card:hover{border-color:var(--border2)}
+.cert-icon{width:46px;height:46px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.cert-name{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;color:#fff;margin-bottom:4px;line-height:1.3}
+.cert-issuer{font-size:0.72rem;color:var(--soft)}
+.cert-status{font-size:0.63rem;margin-top:8px;padding:2px 8px;border-radius:20px;display:inline-block;letter-spacing:0.07em}
+.s-earned{background:rgba(57,211,83,0.1);color:var(--green);border:1px solid rgba(57,211,83,0.2)}
+.s-progress{background:rgba(255,179,71,0.1);color:var(--amber);border:1px solid rgba(255,179,71,0.2)}
+
+/* EXPERIENCE */
+.exp-list{display:grid;gap:1.5rem}
+.exp-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.5rem;display:grid;grid-template-columns:auto 1fr;gap:1.25rem;transition:border-color 0.3s}
+.exp-card:hover{border-color:var(--border2)}
+.exp-line{display:flex;flex-direction:column;align-items:center;gap:0}
+.exp-dot{width:12px;height:12px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px rgba(0,229,255,0.5);flex-shrink:0;margin-top:4px}
+.exp-connector{width:2px;flex:1;background:var(--border);margin:6px 0;min-height:20px}
+.exp-role{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:3px}
+.exp-company{font-size:0.8rem;color:var(--cyan);margin-bottom:4px}
+.exp-date{font-size:0.68rem;color:var(--muted);letter-spacing:0.06em;margin-bottom:0.9rem}
+.exp-items{list-style:none;display:grid;gap:5px}
+.exp-items li{font-size:0.77rem;color:var(--soft);padding-left:1rem;position:relative;line-height:1.65}
+.exp-items li::before{content:'›';position:absolute;left:0;color:var(--muted)}
+
+/* EDUCATION */
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.25rem}
+.edu-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.5rem;transition:border-color 0.3s}
+.edu-card:hover{border-color:var(--border2)}
+.edu-degree{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:5px;line-height:1.3}
+.edu-school{font-size:0.8rem;color:var(--cyan);margin-bottom:4px}
+.edu-location{font-size:0.72rem;color:var(--muted)}
+.edu-date{font-size:0.68rem;color:var(--muted);letter-spacing:0.06em;margin-top:8px}
+
+/* CONTACT */
+#contact{text-align:center}
+#contact .container{max-width:640px}
+.contact-desc{font-size:0.83rem;color:var(--soft);line-height:1.95;margin-bottom:2.5rem}
+.contact-links{display:flex;gap:0.85rem;justify-content:center;flex-wrap:wrap}
+.contact-link{display:flex;align-items:center;gap:8px;padding:10px 18px;border-radius:6px;font-size:0.76rem;text-decoration:none;color:var(--soft);background:var(--card);border:1px solid var(--border);letter-spacing:0.05em;transition:all 0.2s}
+.contact-link:hover{color:var(--cyan);border-color:var(--border2);transform:translateY(-2px)}
+.contact-link i{font-size:0.95rem}
+
+/* FOOTER */
+footer{position:relative;z-index:1;padding:2rem;text-align:center;border-top:1px solid var(--border);font-size:0.7rem;color:var(--muted);letter-spacing:0.07em}
+footer span{color:var(--cyan)}
+
+/* RESPONSIVE */
+@media(max-width:720px){
+  .about-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .exp-card{grid-template-columns:1fr}
+  .exp-line{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">Y031<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certs">Certs</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="nav-badge">● Actively Job Seeking</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">// Cybersecurity Portfolio</div>
+    <h1 class="hero-name">YO<span class="acc">EL</span></h1>
+    <p class="hero-loc"><i class="fa-solid fa-location-dot"></i>Houston, Texas</p>
+    <div class="typed-wrap"><span id="typed-text"></span></div>
+    <p class="hero-desc">
+      Security Intern at the Houston Rockets (Sep 2025 – May 2026) &amp; MIS graduate from Texas Southern University.
+      I built hands-on expertise across vulnerability management, SIEM, cloud security, and AI-driven
+      incident response — and I'm now actively looking for my next full-time security role.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-folder-open"></i>View Projects</a>
+      <a href="mailto:yoely282@gmail.com" class="btn btn-outline"><i class="fa-solid fa-envelope"></i>Contact Me</a>
+      <a href="https://www.linkedin.com/in/yoelyoel/" target="_blank" class="btn btn-outline btn-sm"><i class="fa-brands fa-linkedin"></i>LinkedIn</a>
+      <a href="https://github.com/yoely282" target="_blank" class="btn btn-outline btn-sm"><i class="fa-brands fa-github"></i>GitHub</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">Projects</div></div>
+      <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">Certifications</div></div>
+      <div class="stat-item"><div class="stat-num">3+</div><div class="stat-label">Years Exp</div></div>
+      <div class="stat-item"><div class="stat-num">BS</div><div class="stat-label">MIS Degree</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">// 01 — About Me</span>
+      <h2 class="section-title">Who I Am</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm Yoel, a cybersecurity professional and MIS graduate from Texas Southern University. I recently completed a Security Internship with the Houston Rockets (Sep 2025 – May 2026), where I worked across physical and digital security operations, incident response, and access management.</p>
+        <p>My approach is hands-on and lab-driven. From deploying Microsoft Sentinel in Azure and hunting threats with KQL, to spinning up honeypots and building AI-powered incident response automation — I don't just study security, I build it.</p>
+        <p>Armed with 5 certifications, real internship experience, and 6 self-built security labs, I'm now actively seeking my next full-time role in cybersecurity.</p>
+        <div style="margin-top:1.25rem;display:flex;gap:0.75rem;flex-wrap:wrap">
+          <a href="#projects" class="btn btn-outline btn-sm"><i class="fa-solid fa-flask"></i>My Labs</a>
+          <a href="#experience" class="btn btn-outline btn-sm"><i class="fa-solid fa-briefcase"></i>Experience</a>
+        </div>
+      </div>
+      <div class="about-terminal">
+        <div class="terminal-bar">
+          <span class="t-dot" style="background:#ff5f57"></span>
+          <span class="t-dot" style="background:#febc2e"></span>
+          <span class="t-dot" style="background:#28c840"></span>
+          <span style="margin-left:8px;font-size:0.7rem;color:var(--muted)">whoami.sh</span>
+        </div>
+        <div class="terminal-body">
+          <div><span class="t-prompt">yoel@sec ~$</span> <span class="t-cmd">cat profile.json</span></div>
+          <div style="color:var(--border2)">{</div>
+          <div>&nbsp;&nbsp;<span class="t-key">"name"</span>: <span class="t-val">"Yoel"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="t-key">"location"</span>: <span class="t-val">"Houston, TX"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="t-key">"role"</span>: <span class="t-val">"Security Intern @ Rockets ✓"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="t-key">"degree"</span>: <span class="t-val">"BS MIS — Texas Southern"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="t-key">"focus"</span>: <span class="t-val">"SIEM, Cloud, Vuln Mgmt"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="t-key">"certs"</span>: <span class="t-val">5</span>,</div>
+          <div>&nbsp;&nbsp;<span class="t-key">"email"</span>: <span class="t-val">"yoely282@gmail.com"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="t-key">"status"</span>: <span class="t-val" style="color:var(--amber)">"Actively Job Seeking"</span></div>
+          <div style="color:var(--border2)">}</div>
+          <div style="margin-top:0.5rem"><span class="t-prompt">yoel@sec ~$</span> <span style="opacity:0.35">_</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">// 02 — Projects</span>
+      <h2 class="section-title">Lab Work</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="projects-grid">
+
+      <!-- PROJECT 1 -->
+      <div class="project-card expanded" id="proj1">
+        <div class="project-header">
+          <div class="project-meta">
+            <div class="project-number">// Project 01</div>
+            <div class="project-title">Vulnerability Assessment Lab <span>— Nessus + VirtualBox</span></div>
+            <div class="project-date"><i class="fa-solid fa-calendar"></i>Nov 2024 — Present &nbsp;|&nbsp; Houston, TX</div>
+            <div class="project-desc">End-to-end vulnerability assessment on an intentionally weakened Windows VM. Ran credentialed Nessus scans, introduced real-world CVEs including Log4Shell, then fully remediated and validated with a clean final scan.</div>
+            <div class="project-tags">
+              <span class="tag tag-red">Nessus Essentials</span>
+              <span class="tag tag-cyan">VirtualBox</span>
+              <span class="tag tag-amber">Windows 10</span>
+              <span class="tag tag-green">Remediation</span>
+              <span class="tag tag-muted">Log4Shell</span>
+              <span class="tag tag-muted">CVE Analysis</span>
+            </div>
+          </div>
+          <div class="project-toggle" onclick="toggleProject('proj1')"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="project-body">
+          <div class="phase-list">
+            <div class="phase">
+              <div class="phase-top"><div class="phase-dot"></div><div class="phase-title">Lab Setup — Windows VM (VirtualBox)</div></div>
+              <ul class="phase-items">
+                <li>Created Windows 10 VM — 8 GB RAM, 2 CPU, 50 GB storage</li>
+                <li>Installed VirtualBox Guest Additions; configured Host-Only network adapter</li>
+                <li>Verified VM-to-host connectivity via ipconfig and ping</li>
+              </ul>
+            </div>
+            <div class="phase">
+              <div class="phase-top"><div class="phase-dot phase-dot-r"></div><div class="phase-title">Intentionally Weakened Target Machine</div></div>
+              <ul class="phase-items">
+                <li>Paused Windows Updates to expose unpatched attack surface</li>
+                <li>Disabled Windows Firewall and UAC prompt restrictions</li>
+                <li>Installed outdated Chrome, 7-Zip, and vulnerable Log4j software</li>
+              </ul>
+            </div>
+            <div class="phase">
+              <div class="phase-top"><div class="phase-dot"></div><div class="phase-title">Nessus Essentials — Scanner Configuration</div></div>
+              <ul class="phase-items">
+                <li>Installed and activated Nessus Essentials; accessed dashboard at https://localhost:8834</li>
+                <li>Ran Basic Network Scan — found open ports, SMB issues, medium findings</li>
+                <li>Added Windows credentials; set LocalAccountTokenFilterPolicy = 1 for deep scan</li>
+              </ul>
+              <div class="code-block"><span class="code-comment"># Registry key for credentialed scanning</span>
+HKLM\SOFTWARE\Microsoft\Windows\...\Policies\System
+LocalAccountTokenFilterPolicy = 1  <span class="code-comment">(DWORD)</span></div>
+            </div>
+            <div class="phase">
+              <div class="phase-top"><div class="phase-dot phase-dot-r"></div><div class="phase-title">Credentialed Scan Results — Critical CVEs Found</div></div>
+              <ul class="phase-items">
+                <li>Uncovered Critical / High vulnerabilities: Log4Shell (CVE-2021-44228), missing OS patches, RCE findings</li>
+                <li>Identified browser vulnerabilities from outdated Chrome and 7-Zip CVEs</li>
+                <li>Documented all findings with severity ratings for before/after comparison</li>
+              </ul>
+            </div>
+            <div class="phase">
+              <div class="phase-top"><div class="phase-dot phase-dot-g"></div><div class="phase-title">Remediation &amp; Final Validation</div></div>
+              <ul class="phase-items">
+                <li>Re-enabled Windows Updates and applied all available patches</li>
+                <li>Re-enabled Windows Firewall; removed all vulnerable software</li>
+                <li>Ran final credentialed scan — confirmed significant reduction in vulnerabilities</li>
+                <li>Developed and documented effective remediation strategies to strengthen system resilience</li>
+              </ul>
+            </div>
+          </div>
+          <div class="skills-row">
+            <span class="tag tag-cyan">Vulnerability Scanning</span>
+            <span class="tag tag-cyan">Credentialed Assessment</span>
+            <span class="tag tag-amber">Risk Prioritization</span>
+            <span class="tag tag-green">Remediation Verification</span>
+            <span class="tag tag-red">Log4Shell CVE-2021-44228</span>
+            <span class="tag tag-muted">Lab Documentation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 2 -->
+      <div class="project-card" id="proj2">
+        <div class="project-header">
+          <div class="project-meta">
+            <div class="project-number">// Project 02</div>
+            <div class="project-title">Password Management System <span>— Passbolt on AWS</span></div>
+            <div class="project-date"><i class="fa-solid fa-calendar"></i>Jan 2025 — Present &nbsp;|&nbsp; Houston, TX</div>
+            <div class="project-desc">Self-hosted Passbolt password manager deployed on AWS with HTTPS encryption, custom domain configuration, and production-grade security hardening.</div>
+            <div class="project-tags">
+              <span class="tag tag-amber">AWS Cloud</span>
+              <span class="tag tag-cyan">Passbolt</span>
+              <span class="tag tag-green">HTTPS / TLS</span>
+              <span class="tag tag-muted">Domain Config</span>
+              <span class="tag tag-muted">Cloud Security</span>
+            </div>
+          </div>
+          <div class="project-toggle" onclick="toggleProject('proj2')"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="project-body">
+          <div class="phase-list">
+            <div class="phase">
+              <div class="phase-top"><div class="phase-dot phase-dot-a"></div><div class="phase-title">AWS Infrastructure Setup</div></div>
+              <ul class="phase-items">
+                <li>Provisioned EC2 instance on AWS to host Passbolt self-hosted password manager</li>
+                <li>Configured scalable cloud infrastructure ensuring high availability and reliable access</li>
+                <li>Hardened server-level security settings and access controls</li>
+              </ul>
+            </div>
+            <div class="phase">
+              <div class="phase-top"><div class="phase-dot"></div><div class="phase-title">HTTPS Encryption Implementation</div></div>
+              <ul class="phase-items">
+                <li>Implemented HTTPS encryption to safeguard data in transit to and from the password manager</li>
+                <li>Configured SSL/TLS certificate for the domain, eliminating plain-text credential exposure</li>
+                <li>Strengthened overall security posture of the hosted application</li>
+              </ul>
+            </div>
+            <div class="phase">
+              <div class="phase-top"><div class="phase-dot phase-dot-g"></div><div class="phase-title">Domain &amp; Access Management</div></div>
+              <ul class="phase-items">
+                <li>Configured and maintained custom domain hosting for the password manager</li>
+                <li>Enabled secure complex password storage for enhanced data protection</li>
+                <li>Ensured accessible, authenticated user experience through the public domain</li>
+              </ul>
+            </div>
+          </div>
+          <div class="skills-row">
+            <span class="tag tag-amber">AWS EC2</span>
+            <span class="tag tag-green">SSL/TLS</span>
+            <span class="tag tag-cyan">Cloud Security</span>
+            <span class="tag tag-muted">Domain Management</span>
+            <span class="tag tag-muted">Encryption</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 3 -->
+      <div class="project-card" id="proj3">
+        <div class="project-header">
+          <div class="project-meta">
+            <div class="project-number">// Project 03</div>
+            <div class="project-title">Enterprise Network Design <span>— Cisco Packet Tracer</span></div>
+            <div class="project-date"><i class="fa-solid fa-calendar"></i>Nov 2024 — Present</div>
+            <div class="project-desc">Designed and simulated multiple enterprise-grade network infrastructures — from SOHO to campus, hotel, bank, and trading floor environments — using Cisco Packet Tracer.</div>
+            <div class="project-tags">
+              <span class="tag tag-cyan">Cisco Packet Tracer</span>
+              <span class="tag tag-muted">VLANs</span>
+              <span class="tag tag-muted">OSPF</span>
+              <span class="tag tag-muted">NAT</span>
+              <span class="tag tag-muted">DHCP</span>
+              <span class="tag tag-muted">Port Security</span>
+            </div>
+          </div>
+          <div class="project-toggle" onclick="toggleProject('proj3')"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="project-body">
+          <div class="phase-list">
+            <div class="phase">
+              <div class="phase-top"><div class="phase-dot"></div><div class="phase-title">Network Scenarios Designed</div></div>
+              <ul class="phase-items">
+                <li>Small Office / Home Office (SOHO) network</li>
+                <li>Hotel and campus network infrastructure</li>
+                <li>Bank infrastructure with security zones</li>
+                <li>Trading floor support center with redundancy</li>
+              </ul>
+            </div>
+            <div class="phase">
+              <div class="phase-top"><div class="phase-dot phase-dot-p"></div><div class="phase-title">Technologies &amp; Protocols Applied</div></div>
+              <ul class="phase-items">
+                <li>Hierarchical models with core, distribution, and access layers</li>
+                <li>VLANs and inter-VLAN routing for traffic segmentation</li>
+                <li>DHCP, wireless networking, and OSPF dynamic routing</li>
+                <li>NAT, port security, and ISP redundancy for scalability and fault tolerance</li>
+              </ul>
+            </div>
+          </div>
+          <div class="skills-row">
+            <span class="tag tag-cyan">Network Design</span>
+            <span class="tag tag-muted">VLANs</span>
+            <span class="tag tag-muted">OSPF</span>
+            <span class="tag tag-muted">Inter-VLAN Routing</span>
+            <span class="tag tag-muted">NAT</span>
+            <span class="tag tag-muted">Port Security</span>
+            <span class="tag tag-muted">ISP Redundancy</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 4 -->
+      <div class="project-card" id="proj4">
+        <div class="project-header">
+          <div class="project-meta">
+            <div class="project-number">// Project 04</div>
+            <div class="project-title">Multi-Honeypot Platform <span>— T-Pot on Azure</span></div>
+            <div class="project-date"><i class="fa-solid fa-calendar"></i>Nov 2024 — Present &nbsp;|&nbsp; Houston, TX</div>
+            <div class="project-desc">Deployed T-Pot multi-honeypot framework on Azure Cloud for real-time threat detection, attacker behavioral analysis, and early warning on emerging threats.</div>
+            <div class="project-tags">
+              <span class="tag tag-purple">Azure Cloud</span>
+              <span class="tag tag-red">T-Pot</span>
+              <span class="tag tag-cyan">Threat Detection</span>
+              <span class="tag tag-muted">Honeypot</span>
+              <span class="tag tag-muted">Threat Intelligence</span>
+            </div>
+          </div>
+          <div class="project-toggle" onclick="toggleProject('proj4')"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="project-body">
+          <div class="phase-list">
+            <div class="phase">
+              <div class="phase-top"><div class="phase-dot phase-dot-p"></div><div class="phase-title">Azure VM &amp; Network Configuration</div></div>
+              <ul class="phase-items">
+                <li>Provisioned Azure VM with appropriate sizing for T-Pot multi-honeypot stack</li>
+                <li>Configured virtual network and NSG rules to expose honeypot services safely</li>
+                <li>Ensured isolation from production resources while maintaining internet-facing visibility</li>
+              </ul>
+            </div>
+            <div class="phase">
+              <div class="phase-top"><div class="phase-dot phase-dot-r"></div><div class="phase-title">T-Pot Deployment &amp; Configuration</div></div>
+              <ul class="phase-items">
+                <li>Deployed T-Pot framework (Dionaea, Cowrie, Elasticpot, Honeytrap, and more)</li>
+                <li>Configured each honeypot service to simulate realistic vulnerable targets</li>
+                <li>Verified performance and security of the multi-honeypot environment post-deployment</li>
+              </ul>
+            </div>
+            <div class="phase">
+              <div class="phase-top"><div class="phase-dot phase-dot-g"></div><div class="phase-title">Threat Monitoring &amp; Analysis</div></div>
+              <ul class="phase-items">
+                <li>Monitored and analyzed honeypot telemetry — attack IPs, payloads, and patterns</li>
+                <li>Enabled early detection and response to real cyber threats hitting the platform</li>
+                <li>Bolstered overall security posture through attacker behavioral intelligence</li>
+              </ul>
+            </div>
+          </div>
+          <div class="skills-row">
+            <span class="tag tag-purple">Azure</span>
+            <span class="tag tag-red">T-Pot</span>
+            <span class="tag tag-cyan">Threat Detection</span>
+            <span class="tag tag-muted">Network Security Groups</span>
+            <span class="tag tag-muted">Threat Intelligence</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 5 -->
+      <div class="project-card" id="proj5">
+        <div class="project-header">
+          <div class="project-meta">
+            <div class="project-number">// Project 05</div>
+            <div class="project-title">SIEM Implementation <span>— Microsoft Sentinel on Azure</span></div>
+            <div class="project-date"><i class="fa-solid fa-calendar"></i>Nov 2024 — Present &nbsp;|&nbsp; Houston, TX</div>
+            <div class="project-desc">Full Microsoft Sentinel SIEM deployment on Azure Cloud — custom KQL analytics rules, automated incident response playbooks, and hands-on threat investigations.</div>
+            <div class="project-tags">
+              <span class="tag tag-purple">Microsoft Sentinel</span>
+              <span class="tag tag-cyan">KQL</span>
+              <span class="tag tag-amber">Azure Cloud</span>
+              <span class="tag tag-red">Incident Response</span>
+              <span class="tag tag-green">Automation</span>
+            </div>
+          </div>
+          <div class="project-toggle" onclick="toggleProject('proj5')"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="project-body">
+          <div class="phase-list">
+            <div class="phase">
+              <div class="phase-top"><div class="phase-dot phase-dot-p"></div><div class="phase-title">Sentinel Deployment &amp; Workspace Setup</div></div>
+              <ul class="phase-items">
+                <li>Successfully deployed Microsoft Sentinel SIEM in Azure Cloud</li>
+                <li>Configured Log Analytics workspace with relevant data connectors</li>
+                <li>Fortified cloud cybersecurity capabilities for proactive threat detection</li>
+              </ul>
+            </div>
+            <div class="phase">
+              <div class="phase-top"><div class="phase-dot phase-dot-a"></div><div class="phase-title">Custom KQL Analytics Rules</div></div>
+              <ul class="phase-items">
+                <li>Built custom KQL (Kusto Query Language) analytics rules for targeted threat detection</li>
+                <li>Implemented advanced detection techniques to significantly improve alert quality</li>
+                <li>Reduced false positives through fine-tuned query thresholds and entity mapping</li>
+              </ul>
+              <div class="code-block"><span class="code-comment">// Example KQL — Detect multiple failed logins</span>
+SecurityEvent
+| where EventID == 4625
+| summarize FailedAttempts = count() by Account, bin(TimeGenerated, 5m)
+| where FailedAttempts > 5</div>
+            </div>
+            <div class="phase">
+              <div class="phase-top"><div class="phase-dot phase-dot-r"></div><div class="phase-title">Incident Investigation &amp; Response</div></div>
+              <ul class="phase-items">
+                <li>Conducted full incident investigations using Sentinel's investigation graph</li>
+                <li>Implemented automated remediation playbooks (Logic Apps) for rapid response</li>
+                <li>Resolved cybersecurity incidents and implemented recurrence-prevention measures</li>
+              </ul>
+            </div>
+          </div>
+          <div class="skills-row">
+            <span class="tag tag-purple">Microsoft Sentinel</span>
+            <span class="tag tag-cyan">KQL</span>
+            <span class="tag tag-amber">Azure</span>
+            <span class="tag tag-red">Incident Response</span>
+            <span class="tag tag-green">Playbook Automation</span>
+            <span class="tag tag-muted">SIEM Data Analysis</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 6 -->
+      <div class="project-card" id="proj6">
+        <div class="project-header">
+          <div class="project-meta">
+            <div class="project-number">// Project 06</div>
+            <div class="project-title">AI-Enabled Incident Response <span>— ChatGPT + Azure SIEM</span></div>
+            <div class="project-date"><i class="fa-solid fa-calendar"></i>Nov 2024 — Present &nbsp;|&nbsp; Houston, TX</div>
+            <div class="project-desc">Integrated ChatGPT into the Azure SIEM pipeline to automate incident triage, generate smart recommendations, and streamline cybersecurity operations through AI-driven automation.</div>
+            <div class="project-tags">
+              <span class="tag tag-purple">ChatGPT / OpenAI</span>
+              <span class="tag tag-amber">Azure</span>
+              <span class="tag tag-green">Automation</span>
+              <span class="tag tag-cyan">SIEM Integration</span>
+              <span class="tag tag-muted">AI Security</span>
+            </div>
+          </div>
+          <div class="project-toggle" onclick="toggleProject('proj6')"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="project-body">
+          <div class="phase-list">
+            <div class="phase">
+              <div class="phase-top"><div class="phase-dot phase-dot-p"></div><div class="phase-title">ChatGPT Solution Architecture on Azure</div></div>
+              <ul class="phase-items">
+                <li>Developed a ChatGPT solution on Azure designed for cybersecurity incident management</li>
+                <li>Implemented strict access controls and permissions for secure handling of sensitive incident data</li>
+                <li>Ensured isolation and compliance within the AI-enabled security pipeline</li>
+              </ul>
+            </div>
+            <div class="phase">
+              <div class="phase-top"><div class="phase-dot phase-dot-a"></div><div class="phase-title">AI Fine-Tuning &amp; Optimization</div></div>
+              <ul class="phase-items">
+                <li>Conducted fine-tuning and performance optimizations to maximize AI response accuracy</li>
+                <li>Configured prompts and context windows for security-specific recommendations</li>
+                <li>Validated AI output quality against known incident scenarios</li>
+              </ul>
+            </div>
+            <div class="phase">
+              <div class="phase-top"><div class="phase-dot phase-dot-g"></div><div class="phase-title">SIEM Automation Integration</div></div>
+              <ul class="phase-items">
+                <li>Created automation within Microsoft Sentinel to trigger AI analysis on new incidents</li>
+                <li>Seamlessly integrated AI recommendations into incident response workflows</li>
+                <li>Reduced mean time to respond (MTTR) through intelligent automation and triage</li>
+              </ul>
+            </div>
+          </div>
+          <div class="skills-row">
+            <span class="tag tag-purple">ChatGPT API</span>
+            <span class="tag tag-green">Automation</span>
+            <span class="tag tag-cyan">SIEM Integration</span>
+            <span class="tag tag-amber">Azure Logic Apps</span>
+            <span class="tag tag-muted">AI-enhanced IR</span>
+            <span class="tag tag-muted">Access Controls</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">// 03 — Skills &amp; Tools</span>
+      <h2 class="section-title">Arsenal</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-cat">
+        <div class="skill-cat-title"><i class="fa-solid fa-magnifying-glass-chart"></i>Vulnerability &amp; Assessment</div>
+        <div class="skill-badges">
+          <span class="skill-badge">Nessus</span>
+          <span class="skill-badge">Nmap</span>
+          <span class="skill-badge">Vulnerability Assessment</span>
+          <span class="skill-badge">CVE Analysis</span>
+          <span class="skill-badge">Remediation</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-title"><i class="fa-solid fa-tower-broadcast"></i>SIEM &amp; Monitoring</div>
+        <div class="skill-badges">
+          <span class="skill-badge">Microsoft Sentinel</span>
+          <span class="skill-badge">Splunk</span>
+          <span class="skill-badge">KQL</span>
+          <span class="skill-badge">SIEM Analysis</span>
+          <span class="skill-badge">Log Analytics</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-title"><i class="fa-solid fa-cloud"></i>Cloud Platforms</div>
+        <div class="skill-badges">
+          <span class="skill-badge">Microsoft Azure</span>
+          <span class="skill-badge">AWS</span>
+          <span class="skill-badge">Azure Sentinel</span>
+          <span class="skill-badge">EC2</span>
+          <span class="skill-badge">Azure NSG</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-title"><i class="fa-solid fa-shield-halved"></i>Incident Response</div>
+        <div class="skill-badges">
+          <span class="skill-badge">Incident Handling</span>
+          <span class="skill-badge">IR Automation</span>
+          <span class="skill-badge">AI-enhanced IR</span>
+          <span class="skill-badge">Playbooks</span>
+          <span class="skill-badge">Threat Hunting</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-title"><i class="fa-solid fa-network-wired"></i>Network Security</div>
+        <div class="skill-badges">
+          <span class="skill-badge">VLANs</span>
+          <span class="skill-badge">OSPF</span>
+          <span class="skill-badge">NAT</span>
+          <span class="skill-badge">Wireshark</span>
+          <span class="skill-badge">Cisco Packet Tracer</span>
+          <span class="skill-badge">Firewall</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-title"><i class="fa-solid fa-code"></i>Languages</div>
+        <div class="skill-badges">
+          <span class="skill-badge">Python</span>
+          <span class="skill-badge">PowerShell</span>
+          <span class="skill-badge">KQL</span>
+          <span class="skill-badge">Bash</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-title"><i class="fa-solid fa-desktop"></i>Operating Systems</div>
+        <div class="skill-badges">
+          <span class="skill-badge">Windows</span>
+          <span class="skill-badge">Linux</span>
+          <span class="skill-badge">Kali Linux</span>
+          <span class="skill-badge">Windows Server</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-title"><i class="fa-solid fa-book"></i>Frameworks</div>
+        <div class="skill-badges">
+          <span class="skill-badge">NIST CSF</span>
+          <span class="skill-badge">ISO/IEC 27001</span>
+          <span class="skill-badge">MITRE ATT&amp;CK</span>
+          <span class="skill-badge">OWASP Top 10</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CERTIFICATIONS -->
+<section id="certs">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">// 04 — Certifications</span>
+      <h2 class="section-title">Credentials</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <div class="cert-icon" style="background:rgba(255,92,92,0.12);color:var(--red)"><i class="fa-solid fa-shield"></i></div>
+        <div>
+          <div class="cert-name">CompTIA Security+</div>
+          <div class="cert-issuer">CompTIA</div>
+          <div class="cert-status s-earned">✓ Earned</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon" style="background:rgba(0,229,255,0.12);color:var(--cyan)"><i class="fa-solid fa-circle-nodes"></i></div>
+        <div>
+          <div class="cert-name">Cybersecurity Analyst</div>
+          <div class="cert-issuer">IBM</div>
+          <div class="cert-status s-earned">✓ Earned</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon" style="background:rgba(178,124,255,0.12);color:var(--purple)"><i class="fa-brands fa-microsoft"></i></div>
+        <div>
+          <div class="cert-name">Cybersecurity Analyst</div>
+          <div class="cert-issuer">Microsoft</div>
+          <div class="cert-status s-earned">✓ Earned</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon" style="background:rgba(57,211,83,0.12);color:var(--green)"><i class="fa-brands fa-google"></i></div>
+        <div>
+          <div class="cert-name">IT Support</div>
+          <div class="cert-issuer">Google</div>
+          <div class="cert-status s-earned">✓ Earned</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon" style="background:rgba(255,179,71,0.12);color:var(--amber)"><i class="fa-solid fa-chart-bar"></i></div>
+        <div>
+          <div class="cert-name">Splunk Search Expert</div>
+          <div class="cert-issuer">Splunk</div>
+          <div class="cert-status s-earned">✓ Earned</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">// 05 — Experience</span>
+      <h2 class="section-title">Work History</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="exp-list">
+
+      <div class="exp-card">
+        <div class="exp-line"><div class="exp-dot" style="background:var(--green);box-shadow:0 0 8px rgba(57,211,83,0.5)"></div><div class="exp-connector"></div></div>
+        <div>
+          <div class="exp-role">Security Intern</div>
+          <div class="exp-company"><i class="fa-solid fa-building" style="margin-right:5px;font-size:0.8rem"></i>Houston Rockets</div>
+          <div class="exp-date">Sep 2025 — May 2026 &nbsp;|&nbsp; Houston, TX &nbsp;<span class="tag tag-green" style="font-size:0.6rem;vertical-align:middle">Completed</span></div>
+          <ul class="exp-items">
+            <li>Managed user access and credentials to enforce security policies and minimize unauthorized access risk</li>
+            <li>Monitored security operations and supported incident response to quickly detect and contain threats</li>
+            <li>Coordinated with cross-functional teams and external agencies to maintain a safe, compliant environment</li>
+            <li>Maintained and secured physical and digital security assets to ensure operational readiness</li>
+            <li>Supported event security planning including risk assessments and contingency response protocols</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-line"><div class="exp-dot" style="background:var(--soft);box-shadow:none"></div><div class="exp-connector"></div></div>
+        <div>
+          <div class="exp-role">Physical Security Officer</div>
+          <div class="exp-company"><i class="fa-solid fa-building" style="margin-right:5px;font-size:0.8rem"></i>UPS</div>
+          <div class="exp-date">Aug 2023 — Aug 2025 &nbsp;|&nbsp; Houston, TX</div>
+          <ul class="exp-items">
+            <li>Implemented proactive safety measures to enhance security and mitigate hazards</li>
+            <li>Monitored surveillance systems, conducted regular patrols, and responded to incidents and alarms</li>
+            <li>Enforced access control procedures, verified credentials, and ensured secure facility entry</li>
+            <li>Educated personnel on security protocols to promote emergency preparedness</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-line"><div class="exp-dot" style="background:var(--soft);box-shadow:none"></div></div>
+        <div>
+          <div class="exp-role">Customer Service Officer</div>
+          <div class="exp-company"><i class="fa-solid fa-building" style="margin-right:5px;font-size:0.8rem"></i>Radkin</div>
+          <div class="exp-date">Jul 2021 — May 2023 &nbsp;|&nbsp; Houston, TX</div>
+          <ul class="exp-items">
+            <li>Demonstrated strong organizational, communication, and interpersonal skills serving diverse populations</li>
+            <li>Provided professional customer service through phone, email, and in-person interactions</li>
+            <li>Managed concierge services, tracked packages, handled administrative tasks, and maintained confidentiality</li>
+            <li>Ensured customer satisfaction through follow-ups and efficient service delivery</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">// 06 — Education</span>
+      <h2 class="section-title">Academic Background</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:1rem">
+          <div style="width:42px;height:42px;border-radius:8px;background:rgba(0,229,255,0.1);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--cyan);flex-shrink:0"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div>
+            <div class="edu-degree">Bachelor of Science<br>Management Information Systems</div>
+          </div>
+        </div>
+        <div class="edu-school">Texas Southern University</div>
+        <div class="edu-location"><i class="fa-solid fa-location-dot" style="margin-right:5px;color:var(--red)"></i>Houston, TX</div>
+        <div class="edu-date"><i class="fa-solid fa-calendar" style="margin-right:5px;color:var(--cyan)"></i>Aug 2021 — May 2025</div>
+        <div style="margin-top:0.75rem"><span class="tag tag-green">Graduated</span></div>
+      </div>
+      <div class="edu-card">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:1rem">
+          <div style="width:42px;height:42px;border-radius:8px;background:rgba(90,106,130,0.12);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--soft);flex-shrink:0"><i class="fa-solid fa-school"></i></div>
+          <div>
+            <div class="edu-degree">Associate in<br>General Studies</div>
+          </div>
+        </div>
+        <div class="edu-school">Allen Community College</div>
+        <div class="edu-location"><i class="fa-solid fa-location-dot" style="margin-right:5px;color:var(--red)"></i>Iola, Kansas</div>
+        <div class="edu-date"><i class="fa-solid fa-calendar" style="margin-right:5px;color:var(--cyan)"></i>Aug 2017 — Jul 2019</div>
+        <div style="margin-top:0.75rem"><span class="tag tag-muted">Completed</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-header" style="text-align:center">
+      <span class="section-tag">// 07 — Contact</span>
+      <h2 class="section-title">Let's Connect</h2>
+      <div class="section-line" style="margin:0.9rem auto 0"></div>
+    </div>
+    <p class="contact-desc">
+      I recently completed my Security Internship with the Houston Rockets (Sep 2025 – May 2026)
+      and I'm actively looking for my next opportunity — security analyst, SOC, or junior pentester roles.
+      If you're hiring or want to connect, reach out.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:yoely282@gmail.com" class="contact-link"><i class="fa-solid fa-envelope"></i>yoely282@gmail.com</a>
+      <a href="tel:8323747213" class="contact-link"><i class="fa-solid fa-phone"></i>(832) 374-7213</a>
+      <a href="https://www.linkedin.com/in/yoelyoel/" target="_blank" class="contact-link"><i class="fa-brands fa-linkedin"></i>LinkedIn</a>
+      <a href="https://github.com/yoely282" target="_blank" class="contact-link"><i class="fa-brands fa-github"></i>GitHub</a>
+      <a href="https://tryhackme.com/p/Y031" target="_blank" class="contact-link"><i class="fa-solid fa-crosshairs"></i>TryHackMe</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>Yoel</span> &nbsp;·&nbsp; Cybersecurity Portfolio &nbsp;·&nbsp; Houston, TX &nbsp;·&nbsp;
+  Built with <span>&lt;/&gt;</span> and a security mindset
+</footer>
+
+<script>
+// TYPING ANIMATION
+const roles=["Vulnerability Management","SIEM & Threat Detection","Cloud Security (Azure / AWS)","AI-Powered Incident Response","Network Security Design","Security Intern @ Houston Rockets"];
+let ri=0,ci=0,del=false;
+const el=document.getElementById('typed-text');
+function type(){
+  const w=roles[ri];
+  if(!del){el.textContent=w.substring(0,ci+1);ci++;if(ci===w.length){setTimeout(()=>{del=true;type()},2200);return}}
+  else{el.textContent=w.substring(0,ci-1);ci--;if(ci===0){del=false;ri=(ri+1)%roles.length}}
+  setTimeout(type,del?55:75);
+}
+type();
+
+// PROJECT TOGGLE
+function toggleProject(id){document.getElementById(id).classList.toggle('expanded')}
+
+// NAV ACTIVE
+const secs=document.querySelectorAll('section[id]');
+const navAs=document.querySelectorAll('.nav-links a');
+const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){navAs.forEach(a=>a.classList.remove('active'));const a=document.querySelector(`.nav-links a[href="#${en.target.id}"]`);if(a)a.classList.add('active')}})},{threshold:0.35});
+secs.forEach(s=>obs.observe(s));
+
+// FADE IN
+const fe=document.querySelectorAll('.project-card,.skill-cat,.cert-card,.exp-card,.edu-card');
+const fo=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){en.target.style.opacity='1';en.target.style.transform='translateY(0)'}})},{threshold:0.08});
+fe.forEach(el=>{el.style.opacity='0';el.style.transform='translateY(18px)';el.style.transition='opacity 0.5s ease,transform 0.5s ease';fo.observe(el)});
+</script>
+</body>
+</html>
