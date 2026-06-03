@@ -185,12 +185,56 @@ section{position:relative;z-index:1;padding:5.5rem 2rem}
 footer{position:relative;z-index:1;padding:2rem;text-align:center;border-top:1px solid var(--border);font-size:0.7rem;color:var(--muted);letter-spacing:0.07em}
 footer span{color:var(--cyan)}
 
+/* SCREENSHOT GALLERY */
+.ss-section-label{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin:1.25rem 0 0.6rem;display:flex;align-items:center;gap:8px}
+.ss-section-label::before{content:'';width:3px;height:14px;background:var(--cyan);border-radius:2px;display:inline-block}
+.ss-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;margin-bottom:0.5rem}
+.ss-grid.single{grid-template-columns:1fr;max-width:680px}
+.ss-card{position:relative;border-radius:8px;overflow:hidden;border:1px solid var(--border);cursor:zoom-in;group:hover;transition:border-color 0.2s,transform 0.2s}
+.ss-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.ss-card img{width:100%;display:block;aspect-ratio:16/9;object-fit:cover;object-position:top}
+.ss-card .ss-caption{position:absolute;bottom:0;left:0;right:0;background:rgba(8,13,20,0.88);backdrop-filter:blur(6px);padding:7px 12px;font-size:0.68rem;color:var(--soft);border-top:1px solid var(--border);letter-spacing:0.04em;display:flex;align-items:center;gap:6px}
+.ss-card .ss-caption i{color:var(--cyan);font-size:0.75rem;flex-shrink:0}
+.ss-badge-critical{background:rgba(255,92,92,0.15);color:var(--red);border:1px solid rgba(255,92,92,0.25);font-size:0.6rem;padding:1px 6px;border-radius:3px;margin-left:auto;letter-spacing:0.06em}
+.ss-badge-info{background:rgba(0,229,255,0.1);color:var(--cyan);border:1px solid rgba(0,229,255,0.2);font-size:0.6rem;padding:1px 6px;border-radius:3px;margin-left:auto;letter-spacing:0.06em}
+
+/* VIDEO EMBED */
+.video-section{margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--border)}
+.video-label{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--amber);margin-bottom:0.75rem;display:flex;align-items:center;gap:8px}
+.video-label i{font-size:0.85rem}
+.video-wrap{border-radius:8px;overflow:hidden;border:1px solid var(--border);background:#000;position:relative}
+.video-wrap video{width:100%;display:block;max-height:420px}
+.video-note{font-size:0.7rem;color:var(--muted);margin-top:8px;font-style:italic}
+
+/* MITRE TABLE */
+.mitre-table{width:100%;border-collapse:collapse;font-size:0.76rem;margin-top:0.5rem}
+.mitre-table th{text-align:left;padding:8px 12px;background:var(--bg3);color:var(--cyan);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;border-bottom:1px solid var(--border)}
+.mitre-table td{padding:8px 12px;border-bottom:1px solid rgba(0,229,255,0.06);color:var(--soft)}
+.mitre-table tr:last-child td{border-bottom:none}
+.mitre-table .mitre-id{font-family:'JetBrains Mono',monospace;color:var(--amber);font-size:0.72rem}
+.mitre-table tr:hover td{background:rgba(0,229,255,0.03)}
+
+/* KEY FINDINGS */
+.findings-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin-top:0.75rem}
+.finding-item{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:10px 12px;font-size:0.75rem;color:var(--soft);display:flex;align-items:flex-start;gap:8px;line-height:1.5}
+.finding-item i{color:var(--red);margin-top:2px;flex-shrink:0;font-size:0.8rem}
+
+/* LIGHTBOX */
+.lightbox{display:none;position:fixed;inset:0;z-index:9999;background:rgba(5,10,18,0.97);align-items:center;justify-content:center;padding:1rem}
+.lightbox.active{display:flex}
+.lightbox img{max-width:95vw;max-height:92vh;border-radius:8px;border:1px solid var(--border2);object-fit:contain}
+.lightbox-close{position:fixed;top:20px;right:24px;font-size:1.5rem;color:var(--soft);cursor:pointer;z-index:10000;transition:color 0.2s}
+.lightbox-close:hover{color:var(--cyan)}
+.lightbox-caption{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);font-size:0.78rem;color:var(--soft);background:rgba(8,13,20,0.9);padding:8px 20px;border-radius:20px;border:1px solid var(--border);max-width:90vw;text-align:center}
+
 /* RESPONSIVE */
 @media(max-width:720px){
   .about-grid{grid-template-columns:1fr}
   .nav-links{display:none}
   .exp-card{grid-template-columns:1fr}
   .exp-line{display:none}
+  .ss-grid{grid-template-columns:1fr}
+  .findings-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -232,7 +276,7 @@ footer span{color:var(--cyan)}
       <a href="https://github.com/yoely282" target="_blank" class="btn btn-outline btn-sm"><i class="fa-brands fa-github"></i>GitHub</a>
     </div>
     <div class="hero-stats">
-      <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">Projects</div></div>
+      <div class="stat-item"><div class="stat-num">7</div><div class="stat-label">Projects</div></div>
       <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">Certifications</div></div>
       <div class="stat-item"><div class="stat-num">3+</div><div class="stat-label">Years Exp</div></div>
       <div class="stat-item"><div class="stat-num">BS</div><div class="stat-label">MIS Degree</div></div>
@@ -654,6 +698,213 @@ SecurityEvent
         </div>
       </div>
 
+      <!-- PROJECT 7 — EMAIL MALWARE INVESTIGATION -->
+      <div class="project-card expanded" id="proj7">
+        <div class="project-header">
+          <div class="project-meta">
+            <div class="project-number">// Project 07 &nbsp;<span class="tag tag-red" style="font-size:0.6rem;vertical-align:middle">⭐ Strongest Project</span></div>
+            <div class="project-title">Email Malware Investigation <span>— VIP Recovery Malware Analysis</span></div>
+            <div class="project-date"><i class="fa-solid fa-calendar"></i>Jan 2026 &nbsp;|&nbsp; Ubuntu · Wireshark · Malware Analysis</div>
+            <div class="project-desc">Investigated a phishing email delivering VIP Recovery credential-stealing malware. Performed full-chain analysis: email triage, attachment forensics, IOC extraction, network traffic analysis, SMTP exfiltration detection, and MITRE ATT&amp;CK mapping — all in Wireshark on Ubuntu.</div>
+            <div class="project-tags">
+              <span class="tag tag-red">Wireshark</span>
+              <span class="tag tag-cyan">Email Analysis</span>
+              <span class="tag tag-amber">Malware Analysis</span>
+              <span class="tag tag-purple">MITRE ATT&amp;CK</span>
+              <span class="tag tag-muted">IOC Hunting</span>
+              <span class="tag tag-muted">Phishing</span>
+              <span class="tag tag-green">SMTP Exfiltration</span>
+              <span class="tag tag-muted">Ubuntu</span>
+            </div>
+          </div>
+          <div class="project-toggle" onclick="toggleProject('proj7')"><i class="fa-solid fa-plus"></i></div>
+        </div>
+
+        <div class="project-body">
+
+          <!-- VIDEO WALKTHROUGH -->
+          <div class="video-section">
+            <div class="video-label"><i class="fa-solid fa-circle-play"></i>Live Walkthrough Recording</div>
+            <div class="video-wrap">
+              <video controls preload="metadata">
+                <source src="assets/video/wireshark-walkthrough.mov" type="video/mp4">
+                <source src="assets/video/wireshark-walkthrough.mov" type="video/quicktime">
+                Your browser doesn't support embedded video. <a href="assets/video/wireshark-walkthrough.mov" style="color:var(--cyan)">Download the recording</a>.
+              </video>
+            </div>
+            <div class="video-note">💡 If video doesn't play, convert to .mp4 using HandBrake (free) for full browser support.</div>
+          </div>
+
+          <!-- PHASE 1: EMAIL ANALYSIS -->
+          <div class="ss-section-label"><i class="fa-solid fa-envelope-open-text" style="color:var(--cyan)"></i>Phase 1 — Email Analysis</div>
+          <div class="phase-list" style="margin-bottom:0.75rem">
+            <div class="phase">
+              <div class="phase-top"><div class="phase-dot phase-dot-a"></div><div class="phase-title">Phishing Email Triage</div></div>
+              <ul class="phase-items">
+                <li>Identified sender: <code style="color:var(--red)">postmaster@morecft.shop</code></li>
+                <li>Subject: <em>Request for Quotation (RFQ) – RFQ/2026/10/26</em> — classic business-themed lure</li>
+                <li>Attachment: <code style="color:var(--amber)">Request for Quotation (RFQ) -RFQ20261026.7z</code></li>
+                <li>Extracted malicious VBScript payload: <code style="color:var(--red)">Documented_Invoice_305.vbs</code></li>
+              </ul>
+            </div>
+          </div>
+          <div class="ss-grid">
+            <div class="ss-card" onclick="openLightbox('assets/screenshots/email-grep-analysis.png','Email header analysis — grep extraction of From, Subject, attachment filename')">
+              <img src="assets/screenshots/email-grep-analysis.png" alt="Email grep analysis" loading="lazy">
+              <div class="ss-caption"><i class="fa-solid fa-terminal"></i>Email Header Grep — Sender, Subject, Attachment<span class="ss-badge-info">Evidence</span></div>
+            </div>
+          </div>
+
+          <!-- PHASE 2: MALWARE ANALYSIS -->
+          <div class="ss-section-label"><i class="fa-solid fa-bug" style="color:var(--red)"></i>Phase 2 — Malware Analysis &amp; File Forensics</div>
+          <div class="phase-list" style="margin-bottom:0.75rem">
+            <div class="phase">
+              <div class="phase-top"><div class="phase-dot phase-dot-r"></div><div class="phase-title">Payload Extraction &amp; Hashing</div></div>
+              <ul class="phase-items">
+                <li>Extracted all files from archive — identified PE32+ executable, .NET assemblies, VBScript, and image-embedded payload</li>
+                <li>Identified PowerShell execution chain and Base64 payload decoding</li>
+                <li>Generated SHA256 hashes for all payloads for IOC documentation</li>
+                <li>Confirmed image steganography — executable hidden inside <code style="color:var(--amber)">image.jpg</code></li>
+              </ul>
+            </div>
+          </div>
+          <div class="ss-grid">
+            <div class="ss-card" onclick="openLightbox('assets/screenshots/malware-files-hash.png','file * and sha256sum * — full payload inventory with hash values')">
+              <img src="assets/screenshots/malware-files-hash.png" alt="Malware files and SHA256 hashes" loading="lazy">
+              <div class="ss-caption"><i class="fa-solid fa-fingerprint"></i>Payload Inventory — file * &amp; sha256sum *<span class="ss-badge-critical">Critical</span></div>
+            </div>
+          </div>
+
+          <!-- PHASE 3: DNS INVESTIGATION -->
+          <div class="ss-section-label"><i class="fa-solid fa-globe" style="color:var(--amber)"></i>Phase 3 — DNS Investigation &amp; C2 Infrastructure</div>
+          <div class="phase-list" style="margin-bottom:0.75rem">
+            <div class="phase">
+              <div class="phase-top"><div class="phase-dot phase-dot-a"></div><div class="phase-title">Malware Infrastructure Mapping</div></div>
+              <ul class="phase-items">
+                <li><code style="color:var(--red)">firebasestorage.googleapis.com</code> — cloud-hosted payload delivery</li>
+                <li><code style="color:var(--red)">1zil1.s3.cubbit.eu</code> — secondary payload source</li>
+                <li><code style="color:var(--red)">api.telegram.org</code> — Telegram C2 communication observed</li>
+                <li><code style="color:var(--red)">eraqron.shop</code> — attacker-controlled SMTP exfiltration server</li>
+              </ul>
+            </div>
+          </div>
+          <div class="ss-grid">
+            <div class="ss-card" onclick="openLightbox('assets/screenshots/dns-investigation.png','Wireshark DNS filter — malware infrastructure domains identified')">
+              <img src="assets/screenshots/dns-investigation.png" alt="DNS investigation in Wireshark" loading="lazy">
+              <div class="ss-caption"><i class="fa-solid fa-wifi"></i>DNS Filter — C2 Infrastructure Domains<span class="ss-badge-critical">Critical</span></div>
+            </div>
+          </div>
+
+          <!-- PHASE 4: NETWORK TRAFFIC -->
+          <div class="ss-section-label"><i class="fa-solid fa-network-wired" style="color:var(--cyan)"></i>Phase 4 — Network Traffic Analysis</div>
+          <div class="phase-list" style="margin-bottom:0.75rem">
+            <div class="phase">
+              <div class="phase-top"><div class="phase-dot"></div><div class="phase-title">HTTP &amp; SMTP Traffic Analysis</div></div>
+              <ul class="phase-items">
+                <li>Analyzed HTTP communications — confirmed payload retrieval from cloud infrastructure</li>
+                <li>Filtered SMTP traffic — observed malware initiating authentication to exfil server</li>
+                <li>Traced full attack chain: DNS lookup → HTTP download → SMTP exfiltration</li>
+              </ul>
+            </div>
+          </div>
+          <div class="ss-grid">
+            <div class="ss-card" onclick="openLightbox('assets/screenshots/http-traffic.png','Wireshark HTTP filter — payload retrieval traffic from 132.226.8.169')">
+              <img src="assets/screenshots/http-traffic.png" alt="HTTP traffic analysis" loading="lazy">
+              <div class="ss-caption"><i class="fa-solid fa-arrow-down"></i>HTTP — Payload Retrieval Traffic<span class="ss-badge-info">Evidence</span></div>
+            </div>
+            <div class="ss-card" onclick="openLightbox('assets/screenshots/smtp-traffic.png','Wireshark SMTP filter — full exfiltration session to eraqron.shop')">
+              <img src="assets/screenshots/smtp-traffic.png" alt="SMTP exfiltration traffic" loading="lazy">
+              <div class="ss-caption"><i class="fa-solid fa-paper-plane"></i>SMTP — Exfiltration Session to eraqron.shop<span class="ss-badge-critical">Critical</span></div>
+            </div>
+          </div>
+
+          <!-- PHASE 5: SMTP EXFILTRATION -->
+          <div class="ss-section-label"><i class="fa-solid fa-lock-open" style="color:var(--red)"></i>Phase 5 — SMTP Credential Exfiltration</div>
+          <div class="phase-list" style="margin-bottom:0.75rem">
+            <div class="phase">
+              <div class="phase-top"><div class="phase-dot phase-dot-r"></div><div class="phase-title">Attacker-Controlled Mailbox Confirmed</div></div>
+              <ul class="phase-items">
+                <li>MAIL FROM: <code style="color:var(--red)">rejump@eraqron.shop</code></li>
+                <li>RCPT TO: <code style="color:var(--red)">jump@eraqron.shop</code></li>
+                <li>Attacker server IP: <code style="color:var(--red)">162.254.34.31</code></li>
+                <li>Observed full TCP handshake → SMTP AUTH → MAIL FROM → DATA → QUIT sequence</li>
+              </ul>
+            </div>
+          </div>
+          <div class="ss-grid">
+            <div class="ss-card" onclick="openLightbox('assets/screenshots/smtp-full-stream.png','ip.addr filter — full SMTP session including AUTH and MAIL FROM sequence')">
+              <img src="assets/screenshots/smtp-full-stream.png" alt="Full SMTP stream" loading="lazy">
+              <div class="ss-caption"><i class="fa-solid fa-key"></i>ip.addr Filter — Full SMTP Auth + Mail Session<span class="ss-badge-critical">Critical</span></div>
+            </div>
+          </div>
+
+          <!-- PHASE 6: TCP STREAM / EXFILTRATED DATA -->
+          <div class="ss-section-label"><i class="fa-solid fa-eye" style="color:var(--red)"></i>Phase 6 — Exfiltrated Data Recovery (Strongest Evidence)</div>
+          <div class="phase-list" style="margin-bottom:0.75rem">
+            <div class="phase">
+              <div class="phase-top"><div class="phase-dot phase-dot-r"></div><div class="phase-title">Follow TCP Stream — Stolen Data Recovered</div></div>
+              <ul class="phase-items">
+                <li>Followed TCP stream — recovered full SMTP conversation in plaintext</li>
+                <li>Exfiltrated email contained: hostname (<code style="color:var(--amber)">jim.bozeman</code>), machine name, timestamp, public IP, geolocation (Ashburn, VA)</li>
+                <li>Confirmed VIP Recovery credential theft — Chrome passwords recovered and sent</li>
+                <li>All IOCs extracted and documented</li>
+              </ul>
+            </div>
+          </div>
+          <div class="ss-grid">
+            <div class="ss-card" onclick="openLightbox('assets/screenshots/tcp-stream-smtp.png','Follow TCP Stream — SMTP handshake and AUTH sequence in plaintext')">
+              <img src="assets/screenshots/tcp-stream-smtp.png" alt="TCP stream SMTP handshake" loading="lazy">
+              <div class="ss-caption"><i class="fa-solid fa-stream"></i>TCP Stream — SMTP Handshake &amp; AUTH<span class="ss-badge-critical">Critical</span></div>
+            </div>
+            <div class="ss-card" onclick="openLightbox('assets/screenshots/tcp-stream-exfil.png','Follow TCP Stream — full exfiltrated payload with victim hostname, IP, geolocation, and Chrome passwords')">
+              <img src="assets/screenshots/tcp-stream-exfil.png" alt="Exfiltrated data TCP stream" loading="lazy">
+              <div class="ss-caption"><i class="fa-solid fa-user-secret"></i>TCP Stream — Exfiltrated Victim Data (Passwords + GeoIP)<span class="ss-badge-critical">🔥 Key Evidence</span></div>
+            </div>
+          </div>
+
+          <!-- MITRE ATT&CK -->
+          <div class="ss-section-label"><i class="fa-solid fa-shield" style="color:var(--purple)"></i>MITRE ATT&amp;CK Mapping</div>
+          <table class="mitre-table">
+            <thead><tr><th>Technique</th><th>ID</th></tr></thead>
+            <tbody>
+              <tr><td>Phishing — Spearphishing Attachment</td><td class="mitre-id">T1566.001</td></tr>
+              <tr><td>Command &amp; Scripting — VBScript</td><td class="mitre-id">T1059.005</td></tr>
+              <tr><td>Command &amp; Scripting — PowerShell</td><td class="mitre-id">T1059.001</td></tr>
+              <tr><td>Ingress Tool Transfer</td><td class="mitre-id">T1105</td></tr>
+              <tr><td>Obfuscated Files or Information</td><td class="mitre-id">T1027</td></tr>
+              <tr><td>Exfiltration Over Alternative Protocol — Email</td><td class="mitre-id">T1048.003</td></tr>
+              <tr><td>System Information Discovery</td><td class="mitre-id">T1082</td></tr>
+            </tbody>
+          </table>
+
+          <!-- KEY FINDINGS -->
+          <div class="ss-section-label" style="margin-top:1.25rem"><i class="fa-solid fa-flag" style="color:var(--red)"></i>Key Findings</div>
+          <div class="findings-grid">
+            <div class="finding-item"><i class="fa-solid fa-triangle-exclamation"></i>Malicious phishing email delivered VIP Recovery credential stealer</div>
+            <div class="finding-item"><i class="fa-solid fa-triangle-exclamation"></i>VBScript launched encoded PowerShell payload chain</div>
+            <div class="finding-item"><i class="fa-solid fa-triangle-exclamation"></i>Malware downloaded files from Firebase &amp; Cubbit cloud storage</div>
+            <div class="finding-item"><i class="fa-solid fa-triangle-exclamation"></i>Telegram C2 communication detected</div>
+            <div class="finding-item"><i class="fa-solid fa-triangle-exclamation"></i>SMTP-based credential exfiltration to eraqron.shop confirmed</div>
+            <div class="finding-item"><i class="fa-solid fa-triangle-exclamation"></i>Victim hostname, IP, geolocation, and Chrome passwords recovered</div>
+          </div>
+
+          <!-- SKILLS USED -->
+          <div class="skills-row">
+            <span class="tag tag-red">Wireshark</span>
+            <span class="tag tag-cyan">Packet Analysis</span>
+            <span class="tag tag-amber">Email Forensics</span>
+            <span class="tag tag-purple">MITRE ATT&amp;CK</span>
+            <span class="tag tag-green">IOC Extraction</span>
+            <span class="tag tag-muted">Ubuntu</span>
+            <span class="tag tag-muted">SMTP Analysis</span>
+            <span class="tag tag-muted">Malware Forensics</span>
+            <span class="tag tag-muted">SHA256 Hashing</span>
+            <span class="tag tag-muted">TCP Stream Analysis</span>
+          </div>
+
+        </div>
+      </div><!-- /proj7 -->
+
     </div>
   </div>
 </section>
@@ -677,6 +928,17 @@ SecurityEvent
           <span class="skill-badge">Vulnerability Assessment</span>
           <span class="skill-badge">CVE Analysis</span>
           <span class="skill-badge">Remediation</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-title"><i class="fa-solid fa-bug"></i>Malware &amp; Forensics</div>
+        <div class="skill-badges">
+          <span class="skill-badge">Wireshark</span>
+          <span class="skill-badge">Email Analysis</span>
+          <span class="skill-badge">IOC Extraction</span>
+          <span class="skill-badge">PCAP Analysis</span>
+          <span class="skill-badge">SHA256 Hashing</span>
+          <span class="skill-badge">TCP Stream Analysis</span>
         </div>
       </div>
       <div class="skill-cat">
@@ -940,7 +1202,7 @@ SecurityEvent
 
 <script>
 // TYPING ANIMATION
-const roles=["Vulnerability Management","SIEM & Threat Detection","Cloud Security (Azure / AWS)","AI-Powered Incident Response","Network Security Design","Security Intern @ Houston Rockets"];
+const roles=["Vulnerability Management","SIEM & Threat Detection","Malware & Email Forensics","Cloud Security (Azure / AWS)","AI-Powered Incident Response","Network Security Design","Security Intern @ Houston Rockets"];
 let ri=0,ci=0,del=false;
 const el=document.getElementById('typed-text');
 function type(){
@@ -953,6 +1215,21 @@ type();
 
 // PROJECT TOGGLE
 function toggleProject(id){document.getElementById(id).classList.toggle('expanded')}
+
+// LIGHTBOX
+const lb=document.createElement('div');
+lb.className='lightbox';
+lb.innerHTML='<span class="lightbox-close" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></span><img id="lb-img" src="" alt=""><div class="lightbox-caption" id="lb-cap"></div>';
+document.body.appendChild(lb);
+function openLightbox(src,caption){
+  document.getElementById('lb-img').src=src;
+  document.getElementById('lb-cap').textContent=caption;
+  lb.classList.add('active');
+  document.body.style.overflow='hidden';
+}
+function closeLightbox(){lb.classList.remove('active');document.body.style.overflow='';}
+lb.addEventListener('click',e=>{if(e.target===lb)closeLightbox()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});
 
 // NAV ACTIVE
 const secs=document.querySelectorAll('section[id]');
